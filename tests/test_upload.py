@@ -13,8 +13,6 @@ client = TestClient(app)
 def sample_csv():
     """Fixture que simula un archivo CSV válido."""
     return b"fecha,SKU,cantidad,precio_unitario\n2024-01-01,ABC123,10,19.99\n2024-01-02,DEF456,5,9.99\n"
-
-@pytest.fixture
 def invalid_csv():
     """Fixture que simula un archivo CSV inválido."""
     return b"fecha,SKU,cantidad,precio_unitario\n2024-01-01,ABC123,-10,abc\n"
@@ -46,7 +44,29 @@ def test_upload_invalid_file(invalid_csv):
         files={"file": ("invalid.csv", invalid_csv, "text/csv")},
     )
     assert response.status_code == 400
+def large_csv():
+    """CSV con 100,000 filas."""
+    data = "fecha,SKU,cantidad,precio_unitario\n" + "\n".join(
+        [f"2024-01-01,ABC{i},{i},19.99" for i in range(100_000)]
+    )
+    return data.encode()
 
+def test_upload_large_file(large_csv):
+    response = client.post(
+        "/api/v1/upload-file",
+        files={"file": ("large.csv", large_csv, "text/csv")},
+    )
+    assert response.status_code == 200
+    assert "report_id" in response.json()
+def malicious_csv():
+    return b"fecha,SKU,cantidad,precio_unitario\n2024-01-01,ABC123,10,19.99\n2024-01-01,ABC123,10,19.99; DROP TABLE salesrecord;--"
+
+def test_upload_malicious_file(malicious_csv):
+    response = client.post(
+        "/api/v1/upload-file",
+        files={"file": ("malicious.csv", malicious_csv)},
+    )
+    assert response.status_code == 400  # Debe rechazar SQL Injection
 
 print("Ejecutando tests/test_upload.py")
 
