@@ -1,5 +1,5 @@
 import pytest
-from sqlalchemy import text  # Importa text()
+from sqlalchemy import text 
 from app.models.dataset import SalesRecord
 from app.core.config import settings
 from sqlmodel import Session
@@ -12,7 +12,7 @@ def clean_database():
 #     ...
     """Limpia la base de datos antes de cada prueba."""
     with Session(settings.engine) as session:
-        session.exec(text("DELETE FROM salesrecord"))  # Usa text()
+        session.exec(text("DELETE FROM salesrecord"))  # Usa text() aquí
         session.commit()
 
 
