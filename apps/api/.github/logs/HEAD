@@ -1,0 +1,4 @@
+0000000000000000000000000000000000000000 b616fdc90f6b54a074222b6edecf13a7756b4250 unknown <you@example.com> 1745632884 -0400	commit (initial): Inicialización del proyecto: API IAREPORT
+b616fdc90f6b54a074222b6edecf13a7756b4250 0000000000000000000000000000000000000000 unknown <you@example.com> 1745633173 -0400	Branch: renamed refs/heads/master to refs/heads/main
+0000000000000000000000000000000000000000 b616fdc90f6b54a074222b6edecf13a7756b4250 unknown <you@example.com> 1745633173 -0400	Branch: renamed refs/heads/master to refs/heads/main
+b616fdc90f6b54a074222b6edecf13a7756b4250 260ebd3cb5d32b5fc808ab2119b5120de367655d unknown <you@example.com> 1745634772 -0400	commit: Añadir flujo de trabajo de GitHub Actions

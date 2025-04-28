@@ -1,0 +1,6 @@
+site_name: IAReport API Documentation
+nav:
+  - Home: index.md
+  - Endpoints: endpoints.md
+plugins:
+  - search

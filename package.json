@@ -1,0 +1,19 @@
+{
+	"devDependencies": {
+		"supabase": "^2.20.12",
+		"turbo": "^2.5.0"
+	},
+	"scripts": {
+		"lint": "echo \\todo\"",
+		"dev:web": "pnpm --filter web-app dev",
+		"dev": "turbo run dev --parallel",
+		"dev-api": "powershell -NoExit -Command \"& {Set-Location apps\\\\api; & .\\\\.venv\\\\Scripts\\\\Activate.ps1; python -m uvicorn main:app --reload --port 8000}\"",
+		"dev-web": "pnpm --filter web-app dev"
+	},
+	"name": "iareport",
+	"packageManager": "pnpm@10.9.0",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	]
+}
